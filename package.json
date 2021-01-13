@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }, 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KISiM-AGH/projekt-zaliczeniowy-gs-ms.git"
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/KISiM-AGH/projekt-zaliczeniowy-gs-ms/issues"
   },
-  "homepage": "https://github.com/KISiM-AGH/projekt-zaliczeniowy-gs-ms#readme"
+  "homepage": "https://github.com/KISiM-AGH/projekt-zaliczeniowy-gs-ms#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
