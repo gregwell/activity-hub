@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose'
 import cors from 'cors'
 import activitiesRoutes from './routes/activities.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
 //const PORT = 5000;
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 app.use('/activities', activitiesRoutes);
+app.use('/users', userRoutes);
 
 //app.get('/',(req,res) => res.send('Hello from homepage'));
 //app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`));
