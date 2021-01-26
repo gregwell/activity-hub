@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/user.js';
+import Activity from '../models/activity.js';
 
 export const signin = async (req,res) => {
     const { email, password } = req.body;
@@ -54,4 +55,11 @@ export const getUsers = async (req,res) => {
         res.status(404).json({message:error.message});
     }
 
+};
+
+export const getUserActivities = async (req,res) => {
+
+    Activity.find({athlete: req.params.id})
+        .then((resp) => res.status(200).json(resp))
+        .catch((err) => res.status(400).json("Request failed"));
 };
