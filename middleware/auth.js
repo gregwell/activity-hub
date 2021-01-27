@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
 
 export const auth = async(req,res,next) => {
-    console.log("2222");
     if (req.headers['authorization']) {
         try {
             let authorization = req.headers['authorization'].split(' ');
@@ -23,7 +22,6 @@ export const auth = async(req,res,next) => {
 
 export const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
     return async(req, res, next) => {
-        console.log("tt");
         let authorization = req.headers['authorization'].split(' ');
         req.jwt = jwt.verify(authorization[1], process.env.JWT_SECRET, function(err, decodedToken){
             if (err) { return res.status(401).send();}
@@ -32,7 +30,6 @@ export const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
                 User.findById(req.userId, 'permissionLevel', function(err, document){
                     if (err) { return res.status(401).send(); }
                     else {
-                        console.log("dd");
                         if (document.permissionLevel >= requiredPermissionLevel) return next();
                         else return res.status(403).send();
                     }
