@@ -80,3 +80,11 @@ export const getUserById = async (req,res) => {
         .catch((err) => res.status(400).json("Request failed"));
 
 };
+
+export const patchUser = async (req,res) => {
+
+    User.updateOne({_id: req.params.id} , {$set: req.body })
+        .then((resp) => res.status(200).json(resp))
+        .catch((err) => res.status(400).json("Request failed"));
+
+};
