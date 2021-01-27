@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import activitiesRoutes from './routes/activities.js';
 import userRoutes from './routes/users.js';
+import morgan from 'morgan';
 
 const app = express();
 //const PORT = 5000;
@@ -12,6 +13,7 @@ const app = express();
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
+app.use(morgan('combined'));
 
 app.use('/activities', activitiesRoutes);
 app.use('/users', userRoutes);
