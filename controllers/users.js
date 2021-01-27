@@ -75,6 +75,7 @@ export const deleteUser = async (req,res) => {
 
 export const getUserById = async (req,res) => {
 
+    
     User.findById(req.params.id)
         .then((resp) => res.status(200).json(resp))
         .catch((err) => res.status(400).json("Request failed"));

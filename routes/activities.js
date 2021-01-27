@@ -6,10 +6,10 @@ import { getActivities, createActivity, deleteActivity, getActivityById, patchAc
 import { auth } from '../middleware/auth.js';
 
 //all routes in here are starting with /users
-router.get('/', [auth, getActivities]);
-router.post('/', createActivity);
-router.delete('/:id', deleteActivity);
-router.get('/:id', getActivityById); 
-router.patch('/:id', patchActivity);
+router.get('/', getActivities);
+router.post('/', [auth, createActivity]);
+router.delete('/:id', [auth, deleteActivity]);
+router.get('/:id', [auth, getActivityById]); 
+router.patch('/:id', [auth, patchActivity]);
 
 export default router;
