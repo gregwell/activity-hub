@@ -8,8 +8,14 @@ export const auth = async(req,res,next) => {
             if (authorization[0] !== 'Bearer') {
                 return res.status(401).send(); //invalid request
             } else {
-                req.jwt = jwt.verify(authorization[1], process.env.JWT_SECRET);
-                return next();
+                req.jwt = jwt.verify(authorization[1], process.env.JWT_SECRET, function(err, decodedToken){
+                    if (err) { return res.status(401).send(); }
+                    else {
+                        //req.jwt.userId = decodedToken.id;
+                        req.userId = decodedToken.id;
+                        return next();
+                    }
+                } );
             }
         } catch (err) {
             return res.status(403).send(); //valid request with invalid token
@@ -22,22 +28,31 @@ export const auth = async(req,res,next) => {
 
 export const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
     return async(req, res, next) => {
-        let authorization = req.headers['authorization'].split(' ');
-        req.jwt = jwt.verify(authorization[1], process.env.JWT_SECRET, function(err, decodedToken){
-            if (err) { return res.status(401).send();}
-            else {
-                req.userId = decodedToken.id;
-                User.findById(req.userId, 'permissionLevel', function(err, document){
-                    if (err) { return res.status(401).send(); }
-                    else {
-                        if (document.permissionLevel >= requiredPermissionLevel) return next();
-                        else return res.status(403).send();
-                    }
-                } );
-            }
-        });
-        
 
-        
+        try {
+            User.findById(req.userId, 'permissionLevel', function(err, userPermission){
+                if (err) { return res.status(401).send(); }
+                else {
+                    req.permissionLevel = userPermission.permissionLevel;
+                    if (req.permissionLevel >= requiredPermissionLevel) return next();
+                    else return res.status(403).send();
+                }
+            } );
+        } catch (error) {
+            return res.status(403).send(); //forbidden
+        }
+
     };
  };
+
+ export const onlySameUserOrAdminCanDoThisAction = async (req, res, next)  => {
+    try {
+        if(req.userId === req.params.id) return next();
+        else if (req.permissionLevel === 3) return next();
+        else {
+            return res.status(403).send();
+        }
+    } catch (error) {
+        return res.status(403).send(); //forbidden
+    }
+ }
