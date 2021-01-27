@@ -63,3 +63,12 @@ export const getUserActivities = async (req,res) => {
         .then((resp) => res.status(200).json(resp))
         .catch((err) => res.status(400).json("Request failed"));
 };
+
+export const deleteUser = async (req,res) => {
+
+    //in the request we specify id for example: http://localhost:5000/users/12345thisisID12345
+    //then we use mongoose function deleteOne, to delete the one record with _id: = this id specified in the request
+    User.deleteOne({_id: req.params.id })
+        .then((resp) => res.status(200).json(resp))
+        .catch((err) => res.status(400).json("request failed"));
+};
