@@ -12,6 +12,11 @@
 6. Write a documentation. (not finished yet)
 7. Write integration tests. (not finished yet)
 
+### Related notes:
+
+- [MERN project readme](https://github.com/gregwell/the-facebook/blob/master/README.md)
+- [JavaScript notes](https://github.com/gregwell/university-notes/blob/main/english/javascript/javascript.md)
+
 ### Technology stack and dependencies:
 
 - **Node.js -** a JavaScript runtime built on Chrome's V8 JavaScript engine
