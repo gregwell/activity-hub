@@ -9,8 +9,8 @@
 3. Send requests via postman, without any front-end involved.
 4. Learn about user authentication/authorization. 
 5. Learn how to connect and store data in MongoDB Atlas database.
-6. ~~Write a documentation.~~ **Not finished yet.**
-7. ~~Write integration tests.~~ **Not finished yet.**
+6. Write a documentation. (not finished yet)
+7. Write integration tests. (not finished yet)
 
 ### Technology stack and dependencies:
 
@@ -27,7 +27,7 @@
 
 ### Project structure:
 
-i**ndex.js -** index of the app
+**index.js -** index of the app
 
 1. Creating express server.
 2. Assigning routes for routing.
@@ -53,6 +53,6 @@ i**ndex.js -** index of the app
 
 .**env** - environmental variables
 
-**swagger.json**  - api documentation structure - **not finished yet**
+**swagger.json**  - api documentation structure (not finished yet)
 
 **package.**
