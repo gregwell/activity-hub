@@ -55,4 +55,4 @@
 
 **swagger.json**  - api documentation structure (not finished yet)
 
-**package.**
+**package.json** - project config
