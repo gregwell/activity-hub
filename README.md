@@ -2,6 +2,9 @@
 
 **Created:** 13.01.2021, **last update:** 28.01.2021
 
+A REST API consisting of a collection of users and activities. Allows to get a response for HTTP requests and perform CRUD operations on data (
+create, read, update and delete).
+
 ### Goals:
 
 1. Become familiar with JavaScript; enter the world of web development.
